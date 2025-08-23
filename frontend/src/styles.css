@@ -1,0 +1,135 @@
+:root{
+  --bg:#0b1020;
+  --grid:#121935;
+  --panel:#0f1530;
+  --accent:#5eead4;
+  --accent-d:#2dd4bf;
+  --text:#e5f2ff;
+  --danger:#ff6b6b;
+  --shadow:#070b18;
+}
+
+/* Reset + base */
+*{ box-sizing:border-box; }
+html,body,#root{ height:100%; }
+body{
+  margin:0;
+  background:
+    linear-gradient(0deg, transparent 24%, var(--grid) 25%, var(--grid) 26%, transparent 27%, transparent 74%, var(--grid) 75%, var(--grid) 76%, transparent 77%),
+    linear-gradient(90deg, transparent 24%, var(--grid) 25%, var(--grid) 26%, transparent 27%, transparent 74%, var(--grid) 75%, var(--grid) 76%, transparent 77%),
+    var(--bg);
+  background-size: 40px 40px, 40px 40px, auto;
+  color: var(--text);
+  font-family: ui-monospace, "Cascadia Code", Consolas, Menlo, monospace;
+  overflow-x:hidden;
+}
+
+/* 2D pixel panels */
+.pixel-card{
+  background: var(--panel);
+  border: 2px solid var(--accent);
+  box-shadow:
+    0 0 0 2px var(--shadow),
+    0 8px 0 0 var(--shadow);
+  border-radius: 6px;
+  padding: 18px;
+  transition: transform .12s ease;
+}
+.pixel-card:hover{ transform: translateY(-4px); }
+
+.section{
+  padding: 80px 7%;
+  position: relative;
+}
+
+h1,h2,h3{ margin:0 0 12px; }
+h1{ font-size: 36px; color: var(--accent); text-shadow: 0 0 6px var(--accent-d); }
+h2{ font-size: 28px; color: var(--accent); }
+p{ line-height: 1.6; opacity:.95 }
+
+/* Grid layouts */
+.grid{
+  display:grid;
+  gap:16px;
+}
+.grid-2{ grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.grid-3{ grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+/* Retro button */
+.btn{
+  display:inline-block;
+  background: var(--accent);
+  color:#082a27;
+  border:2px solid var(--accent-d);
+  padding:10px 16px;
+  font-weight:700;
+  text-decoration:none;
+  box-shadow: 0 6px 0 0 var(--accent-d);
+  transform: translateY(0);
+  transition: transform .1s ease, box-shadow .1s ease;
+}
+.btn:active{
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 0 var(--accent-d);
+}
+
+/* HUD (top bar) */
+.hud{
+  position:fixed; inset:0 0 auto 0;
+  height:56px; z-index:50;
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 0 14px;
+  background: #0a122b;
+  border-bottom:2px solid var(--accent);
+  box-shadow: 0 6px 0 0 var(--shadow);
+}
+.hud .lives{ color: var(--danger); letter-spacing:3px; }
+.hud a{ color: var(--text); text-decoration:none; margin:0 10px; }
+.hud a:hover{ color: var(--accent); }
+
+/* Hero */
+.hero{
+  min-height: 100vh;
+  display:flex; align-items:center; justify-content:center;
+  text-align:center;
+}
+.hero .avatar{
+  width:140px; height:140px; border-radius:6px;
+  border:2px solid var(--accent);
+  box-shadow: 0 6px 0 0 var(--shadow);
+  object-fit:cover; background:#000;
+  margin:0 auto 16px;
+}
+
+/* Scroll arrow */
+.arrow{
+  position:absolute; bottom:26px; left:50%; transform:translateX(-50%);
+  font-size:28px; color:var(--accent);
+  animation: bob 1.2s infinite;
+  text-shadow:0 0 8px var(--accent-d);
+}
+@keyframes bob{ 0%,100%{ transform:translate(-50%,0) } 50%{ transform:translate(-50%,-10px) } }
+
+/* Chat widget */
+.chat-fab{
+  position:fixed; right:18px; bottom:18px; z-index:60;
+  width:54px; height:54px; display:grid; place-items:center;
+  background: var(--accent); border:2px solid var(--accent-d); border-radius:6px;
+  box-shadow:0 6px 0 0 var(--accent-d); cursor:pointer;
+}
+.chat-panel{
+  position:fixed; right:18px; bottom:86px; width:320px; height:420px; z-index:60;
+  background: var(--panel); border:2px solid var(--accent);
+  box-shadow:0 8px 0 0 var(--shadow);
+  border-radius:6px; display:flex; flex-direction:column; overflow:hidden;
+}
+.chat-header{ padding:10px 12px; background:#0a122b; border-bottom:2px solid var(--accent); font-weight:700; }
+.chat-body{ flex:1; padding:12px; overflow:auto; }
+.chat-input{ display:flex; gap:8px; padding:12px; border-top:2px solid var(--accent); }
+.chat-input input{
+  flex:1; background:#0b122a; border:2px solid var(--accent); color:var(--text);
+  padding:10px; border-radius:6px;
+}
+
+/* Footer */
+.footer{ padding:30px 7%; text-align:center; opacity:.8 }
